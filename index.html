@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetStat Tv</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1f26;
+            color: white;
+            text-align: center;
+            padding-top: 70px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fe3c00;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 20px;
+            z-index: 1000;
+            height: 60px;
+        }
+
+        header img {
+            height: 40px;
+        }
+
+        header h1 {
+            font-size: 1.6em;
+            margin: 0;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: opacity 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .header-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .main-content {
+            padding: 10px;
+            margin-bottom: 60px; /* Space for footer */
+            overflow-y: auto;
+        }
+
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .video {
+            width: 100%;
+            background-color: #2a2e35;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        iframe {
+            width: 100%;
+            height: 25vh;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .video-title {
+            margin: 2px 0;
+            font-weight: bold;
+            font-size: 1em;
+            padding: 5px;
+            background-color: #fe3c00;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .footer-marquee {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fe3c00;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            padding: 10px 0;
+            z-index: 1000;
+            height: 40px;
+        }
+
+        .footer-marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 30s linear infinite;
+        }
+
+        .warning-message {
+            background-color: #ff9800;
+            color: white;
+            padding: 15px;
+            margin: 20px auto;
+            border-radius: 8px;
+            max-width: 800px;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .warning-message h3 {
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .warning-message ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .warning-message li {
+            margin-bottom: 5px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1c1f26;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #fe3c00;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff5722;
+        }
+
+        @media (max-width: 1200px) {
+            .video-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            iframe {
+                height: 28vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
+            }
+
+            header h1 {
+                font-size: 1.2em;
+                margin: 5px 0;
+            }
+
+            .header-links {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .header-links a {
+                font-size: 0.9em;
+            }
+
+            body {
+                padding-top: 100px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .video-container {
+                grid-template-columns: 1fr;
+            }
+            iframe {
+                height: 30vh;
+            }
+            
+            .video-title {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo">
+        <h1>Futebol Virtual Betano</h1>
+        <div class="header-links">
+            <a href="https://www.betstat.site">Assine Agora: BetStat</a>
+            <a href="https://t.me/betstatsite">Contatos</a>
+        </div>
+    </header>
+
+
+        <!-- Primeira Linha -->
+        <div class="video-container">
+            <div class="video">
+                <div class="video-title">Gloria Eterna</div>
+                <iframe src="https://stoiximan-br.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximan-br&ch=soccercopabr"></iframe>
+            </div>
+            <div class="video">
+                <div class="video-title">Copa America</div>
+                <iframe src="https://stoiximanintl.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximanintl&ch=soccerstarsont"></iframe>
+            </div>
+            <div class="video">
+                <div class="video-title">Euro</div>
+                <iframe src="https://stoiximanintl.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximanintl&ch=soccerwcont"></iframe>
+            </div>
+            <div class="video">
+                <div class="video-title">Campeonato Italiano</div>
+                <iframe src="https://stoiximan-br.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximan-br&ch=soccerserieAbr"></iframe>
+            </div>
+        </div>
+
+        <!-- Segunda Linha -->
+        <div class="video-container">
+            <div class="video">
+                <div class="video-title">Copa das Estrelas</div>
+                <iframe src="https://stoiximan-br.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximan-br&ch=soccerstarsbr"></iframe>
+            </div>
+            <div class="video">
+                <div class="video-title">British Derbies</div>
+                <iframe src="https://vgpclive-vs001.akamaized.net/uof-entry-point/stable/dist/index.html?clientid=6053&sport=vwmf&layout=video&product=vwmf1"></iframe>
+            </div>
+            <div class="video">
+                <div class="video-title">Liga Espanhola</div>
+                <iframe src="https://vgpclive-vs001.akamaized.net/uof-entry-point/stable/dist/index.html?clientid=6053&sport=vwmf&layout=video&product=vwmf2"></iframe>
+            </div>
+            <div class="video">
+                <div class="video-title">Scudetto Italiano</div>
+                <iframe src="https://vgpclive-vs001.akamaized.net/uof-entry-point/stable/dist/index.html?clientid=6053&sport=vwmf&layout=video&product=vwmf3"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="warning-message">
+            <h3>⚠️ Atenção: Configuração Necessária</h3>
+            <p>Para visualizar os vídeos corretamente, é necessário instalar uma extensão que ignora a política de X-Frame-Header no seu navegador. Siga os passos:</p>
+            <ul>
+                <li>Chrome/Edge: Instale a extensão "Ignore X-Frame headers"</li>
+                <li>Firefox: Instale a extensão "Ignore X-Frame Options"</li>
+                <li>Após a instalação, recarregue a página para ver os vídeos</li>
+            </ul>
+        </div>
+
+    <div class="footer-marquee">
+        <span>Assine agora e assista direto do site, www.betstat.site, o seu site de análises especializado no futebol virtual Betano.</span>
+    </div>
+
+    <script>
+                // Prevent right click
+                document.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+        });
+
+        // Prevent keyboard shortcuts
+        document.addEventListener("keydown", function(e) {
+            // Prevent F12 and Ctrl+Shift+I
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+                e.preventDefault();
+            }
+
+            // Prevent Ctrl+U (view source)
+            if (e.ctrlKey && e.key === "u") {
+                e.preventDefault();
+            }
+
+            // Prevent Ctrl+Shift+J (console)
+            if (e.ctrlKey && e.shiftKey && e.key === "J") {
+                e.preventDefault();
+            }
+
+            // Prevent Ctrl+Shift+C (inspector)
+            if (e.ctrlKey && e.shiftKey && e.key === "C") {
+                e.preventDefault();
+            }
+        });
+
+        // DevTools detection
+        const devtools = { open: false };
+        const element = new Image();
+        Object.defineProperty(element, 'id', {
+            get: function() {
+                devtools.open = true;
+            }
+        });
+
+        console.log('%c', element);
+        setInterval(function() {
+            if (devtools.open) {
+                alert('Desculpe, as ferramentas de desenvolvedor estão abertas!');
+                devtools.open = false;
+            }
+        }, 1000);
+
+        // Video toggle function
+        function toggleVideo() {
+            const videoDiv = document.getElementById("liveVideo");
+            const overlayDiv = videoDiv.querySelector(".iframe-overlay");
+            const button = document.querySelector(".toggle-button");
+
+            const isVisible = window.getComputedStyle(videoDiv).display !== "none";
+
+            if (isVisible) {
+                videoDiv.style.display = "none";
+                overlayDiv.style.display = "none";
+                button.textContent = "Expandir Vídeo";
+            } else {
+                videoDiv.style.display = "block";
+                overlayDiv.style.display = "block";
+                button.textContent = "Contrair Vídeo";
+            }
+        }
+
+        // Additional security measures
+        window.addEventListener('load', function() {
+            // Disable drag and drop
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+            });
+
+            // Disable text selection
+            document.addEventListener('selectstart', function(e) {
+                e.preventDefault();
+            });
+
+            // Additional DevTools detection method
+            let devToolsTimeout;
+            const devToolsCheck = () => {
+                const widthThreshold = window.outerWidth - window.innerWidth > 160;
+                const heightThreshold = window.outerHeight - window.innerHeight > 160;
+                if (widthThreshold || heightThreshold) {
+                    document.body.innerHTML = 'DevTools detected!';
+                }
+            };
+
+            window.addEventListener('resize', function() {
+                clearTimeout(devToolsTimeout);
+                devToolsTimeout = setTimeout(devToolsCheck, 100);
+            });
+        });
+    </script>
+</body>
+</html>
