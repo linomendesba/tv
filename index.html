@@ -130,10 +130,10 @@
         .warning-message {
             background-color: #ff9800;
             color: white;
-            padding: 15px;
+            padding: 25px;
             margin: 5px auto;
             border-radius: 8px;
-            max-width: 1000px;
+            max-width: 1050px;
             line-height: 1.5;
             text-align: left;
         }
@@ -281,9 +281,24 @@
         <div class="warning-message">
             <h3>⚠️ Atenção: Configuração Necessária</h3>
             <p>Para visualizar os vídeos corretamente, é necessário instalar uma extensão que ignora a política de X-Frame-Header no seu navegador.</p>
-            <ul>
-                <li>Após a instalação, recarregue a página para ver os vídeos</li>
-            </ul>
+            
+            <div class="browser-instructions">
+                <h4>Chrome ou Edge:</h4>
+                <ol>
+                    <li>Pesquise por "Ignore X-Frame headers" na loja de extensões</li>
+                    <li>Clique em "Adicionar" e confirme a instalação</li>
+                    <li>Recarregue a página para ver os vídeos</li>
+                </ol>
+        
+                <h4>Firefox:</h4>
+                <ol>
+                    <li>Pesquise por "Ignore X-Frame-Options" nos complementos</li>
+                    <li>Clique em "Adicionar ao Firefox"</li>
+                    <li>Recarregue a página para ver os vídeos</li>
+                </ol>
+            </div>
+        
+            <p class="note">Após a instalação, recarregue a página.</p>
         </div>
 
     <div class="footer-marquee">
