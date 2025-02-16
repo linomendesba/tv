@@ -27,7 +27,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #fe3c00;
+            background: linear-gradient(to right, #fe3c00, #005440);
             color: white;
             display: flex;
             align-items: center;
@@ -39,11 +39,6 @@
 
         header img {
             height: 40px;
-        }
-
-        header h1 {
-            font-size: 1.6em;
-            margin: 0;
         }
 
         .header-links {
@@ -58,51 +53,62 @@
             transition: opacity 0.3s;
             padding: 5px 10px;
             border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.1);
         }
 
-        .header-links a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+
 
         .main-content {
-            padding: 10px;
-            margin-bottom: 60px; /* Space for footer */
-            overflow-y: auto;
+            padding: 0;
+            margin-bottom: 60px;
+            width: 100%;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10px;
         }
 
         .video-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-            padding: 0 10px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 10px;
+        }
+
+        /* Container específico para os dois últimos vídeos */
+        .bottom-videos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 10px;
+            width: 66.66%; /* 2/3 da largura para alinhar com os 3 vídeos de cima */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .video {
             width: 100%;
             background-color: #2a2e35;
-            border-radius: 10px;
-            padding: 10px;
+            border-radius: 5px;
+            padding: 3px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
 
         iframe {
             width: 100%;
-            height: 25vh;
+            height: 30vh;
             border: none;
-            border-radius: 5px;
-            margin-bottom: 10px;
+            border-radius: 3px;
+            display: block;
         }
 
         .video-title {
-            margin: 2px 0;
+            margin: 0 0 3px 0;
             font-weight: bold;
             font-size: 1em;
             padding: 5px;
-            background-color: #fe3c00;
-            border-radius: 5px;
-            margin-bottom: 10px;
+            background: linear-gradient(to right, #fe3c00, #005440);
+            border-radius: 3px;
         }
 
         .footer-marquee {
@@ -110,13 +116,13 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #fe3c00;
+            background: linear-gradient(to right, #fe3c00, #005440);
             color: white;
             font-size: 1.2em;
             font-weight: bold;
             white-space: nowrap;
             overflow: hidden;
-            padding: 10px 0;
+            padding: 8px 0;
             z-index: 1000;
             height: 50px;
         }
@@ -127,37 +133,29 @@
             animation: marquee 30s linear infinite;
         }
 
-        .warning-message {
-            background-color: #ff9800;
-            color: white;
-            padding: 25px;
-            margin: 5px auto;
-            border-radius: 8px;
-            max-width: 1050px;
-            line-height: 1.5;
-            text-align: left;
-        }
+        .warning-message { 
+            background-color: #464443; 
+            color: white; 
+            padding: 15px; 
+            margin: 5px 10px; 
+            border-radius: 8px; 
+            line-height: 1.5; 
+            text-align: center; 
+            font-size: 10px; /* Ajuste o tamanho conforme necessário */
+        }  
 
-        .warning-message h3 {
-            margin-bottom: 10px;
-            color: #fff;
-        }
+        .warning-message h3 { 
+            margin-bottom: 10px; 
+            color: #fff; 
+            font-size: 16px; /* Ajuste o tamanho conforme necessário */
+        }  
 
-        .warning-message ul {
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-
-        .warning-message li {
-            margin-bottom: 5px;
-        }
 
         @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-100%); }
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -175,10 +173,13 @@
             background: #ff5722;
         }
 
-        @media (max-width: 1200px) {
-            .video-container {
-                grid-template-columns: repeat(2, 1fr);
+        @media (max-width: 1024px) {
+            .video-container,
+            .bottom-videos {
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
             }
+            
             iframe {
                 height: 28vh;
             }
@@ -189,11 +190,6 @@
                 flex-direction: column;
                 height: auto;
                 padding: 10px;
-            }
-
-            header h1 {
-                font-size: 1.2em;
-                margin: 5px 0;
             }
 
             .header-links {
@@ -209,18 +205,15 @@
             body {
                 padding-top: 100px;
             }
-        }
 
-        @media (max-width: 600px) {
-            .video-container {
+            .video-container,
+            .bottom-videos {
                 grid-template-columns: 1fr;
+                width: 100%;
             }
+
             iframe {
-                height: 30vh;
-            }
-            
-            .video-title {
-                font-size: 0.9em;
+                height: 25vh;
             }
         }
     </style>
@@ -230,13 +223,13 @@
         <img src="logo.png" alt="Logo">
         <img src="betano-logo-0-1.png" alt="">
         <div class="header-links">
-            <a href="https://www.betstat.site/payment.html">Assine Agora: BetStat</a>
+            <a href="https://www.betstat.site/payment.html">Assine Agora</a>
             <a href="https://t.me/betstatsite">Contatos</a>
         </div>
     </header>
 
-
-        <!-- Primeira Linha -->
+    <div class="main-content">
+        <!-- Primeira linha com 3 vídeos -->
         <div class="video-container">
             <div class="video">
                 <div class="video-title">Gloria Eterna</div>
@@ -250,11 +243,10 @@
                 <div class="video-title">Euro</div>
                 <iframe src="https://stoiximanintl.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximanintl&ch=soccerwcont"></iframe>
             </div>
-
         </div>
-
-        <!-- Segunda Linha -->
-        <div class="video-container">
+        
+        <!-- Segunda linha com 2 vídeos centralizados -->
+        <div class="bottom-videos">
             <div class="video">
                 <div class="video-title">Copa das Estrelas</div>
                 <iframe src="https://stoiximan-br.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximan-br&ch=soccerstarsbr"></iframe>
@@ -263,51 +255,38 @@
                 <div class="video-title">Campeonato Italiano</div>
                 <iframe src="https://stoiximan-br.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximan-br&ch=soccerserieAbr"></iframe>
             </div>
-
         </div>
-    </div>
 
-    <div class="main-content">
         <div class="warning-message">
             <h3>⚠️ Atenção: Configuração Necessária</h3>
             <p>Para visualizar os vídeos corretamente, é necessário instalar uma extensão que ignora a política de X-Frame-Header no seu navegador.</p>
-            
         </div>
+    </div>
 
     <div class="footer-marquee">
         <span>Transforme suas apostas com BetStat, Análises precisas, estatísticas confiáveis, resultados comprovados o seu site de análises especializado no futebol virtual Betano.</span>
     </div>
 
     <script>
-                // Prevent right click
-                document.addEventListener("contextmenu", function(e) {
+        document.addEventListener("contextmenu", function(e) {
             e.preventDefault();
         });
 
-        // Prevent keyboard shortcuts
         document.addEventListener("keydown", function(e) {
-            // Prevent F12 and Ctrl+Shift+I
             if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
                 e.preventDefault();
             }
-
-            // Prevent Ctrl+U (view source)
             if (e.ctrlKey && e.key === "u") {
                 e.preventDefault();
             }
-
-            // Prevent Ctrl+Shift+J (console)
             if (e.ctrlKey && e.shiftKey && e.key === "J") {
                 e.preventDefault();
             }
-
-            // Prevent Ctrl+Shift+C (inspector)
             if (e.ctrlKey && e.shiftKey && e.key === "C") {
                 e.preventDefault();
             }
         });
 
-        // DevTools detection
         const devtools = { open: false };
         const element = new Image();
         Object.defineProperty(element, 'id', {
@@ -324,38 +303,15 @@
             }
         }, 1000);
 
-        // Video toggle function
-        function toggleVideo() {
-            const videoDiv = document.getElementById("liveVideo");
-            const overlayDiv = videoDiv.querySelector(".iframe-overlay");
-            const button = document.querySelector(".toggle-button");
-
-            const isVisible = window.getComputedStyle(videoDiv).display !== "none";
-
-            if (isVisible) {
-                videoDiv.style.display = "none";
-                overlayDiv.style.display = "none";
-                button.textContent = "Expandir Vídeo";
-            } else {
-                videoDiv.style.display = "block";
-                overlayDiv.style.display = "block";
-                button.textContent = "Contrair Vídeo";
-            }
-        }
-
-        // Additional security measures
         window.addEventListener('load', function() {
-            // Disable drag and drop
             document.addEventListener('dragstart', function(e) {
                 e.preventDefault();
             });
 
-            // Disable text selection
             document.addEventListener('selectstart', function(e) {
                 e.preventDefault();
             });
 
-            // Additional DevTools detection method
             let devToolsTimeout;
             const devToolsCheck = () => {
                 const widthThreshold = window.outerWidth - window.innerWidth > 160;
