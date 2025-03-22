@@ -6,6 +6,13 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>BetStat Tv</title>
     <style>
+        :root {
+            --primary-color: #292d36;
+            --secondary-color: #1c1f26;
+            --accent-color: #2a2e35;
+            --text-color: #1fad8b;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,13 +20,13 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #1c1f26;
-            color: white;
-            text-align: center;
-            padding-top: 70px;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
             min-height: 100vh;
             overflow-x: hidden;
+            padding-top: 60px;
+            line-height: 1.6;
         }
 
         header {
@@ -27,133 +34,133 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(to right, #fe3c00, #005440);
-            color: white;
+            background: #005540;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 5px 20px;
+            padding: 0 20px;
             z-index: 1000;
-            height: 60px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         header img {
-            height: 40px;
+            height: 35px;
+            transition: transform 0.3s ease;
+        }
+
+        header img:hover {
+            transform: scale(1.05);
         }
 
         .header-links {
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
 
         .header-links a {
-            color: white;
+            color: var(--text-color);
             text-decoration: none;
-            font-weight: bold;
-            transition: opacity 0.3s;
-            padding: 5px 10px;
-            border-radius: 5px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
         }
 
+        .marquee-container {
+            position: fixed;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            background: var(--primary-color);
+            color: var(--text-color);
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 8px 0;
+            z-index: 999;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
+        .marquee-container span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 110s linear infinite; /* 50s para o texto passar + 60s de pausa */
+            white-space: nowrap;
+        }
 
         .main-content {
-            padding: 0;
-            margin-bottom: 60px;
-            width: 100%;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 80px;
+            max-width: 1800px;
+            margin: 80px auto 60px;
+            padding: 0 15px;
         }
 
         .video-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 10px;
-        }
-
-        /* Container específico para os dois últimos vídeos */
-        .bottom-videos {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 10px;
-            width: 66.66%; /* 2/3 da largura para alinhar com os 3 vídeos de cima */
-            margin-left: auto;
-            margin-right: auto;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
         }
 
         .video {
-            width: 100%;
             background-color: #2a2e35;
-            border-radius: 5px;
-            padding: 3px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            padding-top: 80%; /* Ajuste aqui para aumentar a altura (antes era 56.25%) */
         }
 
-        iframe {
-            width: 100%;
-            height: 30vh;
-            border: none;
-            border-radius: 3px;
-            display: block;
+        .video:hover {
+            transform: translateY(-5px);
         }
 
         .video-title {
-            margin: 0 0 3px 0;
-            font-weight: bold;
-            font-size: 1em;
-            padding: 5px;
-            background: linear-gradient(to right, #fe3c00, #005440);
-            border-radius: 3px;
-        }
-
-        .footer-marquee {
-            position: fixed;
-            bottom: 0;
+            position: absolute;
+            top: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(to right, #fe3c00, #005440);
-            color: white;
+            background: var(--primary-color);
+            padding: 8px;
+            font-weight: 600;
+            font-size: 1.1em;
+            border-radius: 6px 6px 0 0;
+            z-index: 1;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0 0 6px 6px;
+        }
+
+        .warning-message {
+            background-color: #2b3039;
+            padding: 15px;
+            margin: 30px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .warning-message h3 {
+            color: var(--text-color);
             font-size: 1.2em;
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            padding: 8px 0;
-            z-index: 1000;
-            height: 50px;
+            margin-bottom: 10px;
+            
         }
 
-        .footer-marquee span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 30s linear infinite;
+        .warning-message p {
+            font-size: 0.95em;
         }
-
-        .warning-message { 
-            background-color: #464443; 
-            color: white; 
-            padding: 15px; 
-            margin: 5px 10px; 
-            border-radius: 8px; 
-            line-height: 1.5; 
-            text-align: center; 
-            font-size: 10px; /* Ajuste o tamanho conforme necessário */
-        }  
-
-        .warning-message h3 { 
-            margin-bottom: 10px; 
-            color: #fff; 
-            font-size: 16px; /* Ajuste o tamanho conforme necessário */
-        }  
-
 
         @keyframes marquee {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            45.45% { transform: translateX(-100%); } /* 50s / 110s = 45.45% */
+            100% { transform: translateX(-100%); } /* Fica parado por 60s (o restante do tempo) */
         }
 
         ::-webkit-scrollbar {
@@ -161,59 +168,50 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #1c1f26;
+            background: var(--secondary-color);
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #fe3c00;
+            background: var(--accent-color);
             border-radius: 5px;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #ff5722;
-        }
-
         @media (max-width: 1024px) {
-            .video-container,
-            .bottom-videos {
-                grid-template-columns: 1fr 1fr;
-                width: 100%;
+            .video-container {
+                grid-template-columns: repeat(2, 1fr);
             }
-            
-            iframe {
-                height: 28vh;
+            .video {
+                padding-top: 65%; /* Mantém a proporção ajustada */
             }
         }
 
         @media (max-width: 768px) {
             header {
-                flex-direction: column;
-                height: auto;
                 padding: 10px;
+                height: auto;
+                flex-direction: column;
             }
 
             .header-links {
+                margin-top: 10px;
                 gap: 10px;
                 flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .header-links a {
-                font-size: 0.9em;
             }
 
             body {
-                padding-top: 100px;
+                padding-top: 90px;
             }
 
-            .video-container,
-            .bottom-videos {
+            .marquee-container {
+                top: 80px;
+            }
+
+            .video-container {
                 grid-template-columns: 1fr;
-                width: 100%;
             }
 
-            iframe {
-                height: 25vh;
+            .video {
+                padding-top: 65%; /* Mantém a proporção ajustada */
             }
         }
     </style>
@@ -221,15 +219,18 @@
 <body>
     <header>
         <img src="logo.png" alt="Logo">
-        <img src="betano-logo-0-1.png" alt="">
+        <img src="betano-logo-0-1.png" alt="Betano Logo">
         <div class="header-links">
             <a href="https://www.betstat.site/payment.html">Assine Agora</a>
             <a href="https://t.me/sitebetstat">Contato</a>
         </div>
     </header>
 
+    <div class="marquee-container">
+        <span>O BetStat é uma plataforma inovadora que revoluciona a maneira como você faz seus investimentos. Com análises detalhadas, estatísticas precisas e uma comunidade ativa, fornecemos todas as ferramentas necessárias para transformar suas apostas em investimentos inteligentes. </span>
+    </div>
+
     <div class="main-content">
-        <!-- Primeira linha com 3 vídeos -->
         <div class="video-container">
             <div class="video">
                 <div class="video-title">Gloria Eterna</div>
@@ -243,9 +244,6 @@
                 <div class="video-title">Euro</div>
                 <iframe src="https://stoiximanintl.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximanintl&ch=soccerwcont"></iframe>
             </div>
-        </div>
-
-        <div class="video-container">
             <div class="video">
                 <div class="video-title">Copa das Estrelas</div>
                 <iframe src="https://stoiximan-br.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximan-br&ch=soccerstarsbr"></iframe>
@@ -258,10 +256,6 @@
                 <div class="video-title">Liga Espanhola</div>
                 <iframe src="https://vgpclive-vs001.akamaized.net/uof-entry-point/stable/dist/index.html?clientid=6053&sport=vwmf&layout=video&product=vwmf2"></iframe>
             </div>
-        </div>
-        
-        <!-- Segunda linha com 2 vídeos centralizados -->
-        <div class="bottom-videos">
             <div class="video">
                 <div class="video-title">British Derbie</div>
                 <iframe src="https://vgpclive-vs001.akamaized.net/uof-entry-point/stable/dist/index.html?clientid=6053&sport=vwmf&layout=video&product=vwmf1"></iframe>
@@ -272,63 +266,40 @@
             </div>
         </div>
 
+        <br>
+
         <div class="warning-message">
-            <h3>⚠️ Atenção: Configuração Necessária</h3>
-            <p>Para visualizar os vídeos corretamente, é necessário instalar uma extensão que ignora a política de X-Frame-Header no seu navegador.</p>
+            <h3>Configuração Necessária</h3>
+            <p>Para ver os vídeos sem problemas, instale a extensão "Ignore X-Frame-Options" no seu navegador. Isso vai permitir que os vídeos carreguem corretamente.</p>
         </div>
     </div>
 
-    <div class="footer-marquee">
-        <span>Transforme suas apostas com BetStat, Análises precisas, estatísticas confiáveis, resultados comprovados o seu site de análises especializado no futebol virtual Betano.</span>
-    </div>
-
     <script>
-        document.addEventListener("contextmenu", function(e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.key === "u") {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.shiftKey && e.key === "J") {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.shiftKey && e.key === "C") {
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("keydown", e => {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) || (e.ctrlKey && e.key === "u")) {
                 e.preventDefault();
             }
         });
 
         const devtools = { open: false };
-        const element = new Image();
-        Object.defineProperty(element, 'id', {
-            get: function() {
-                devtools.open = true;
-            }
+        Object.defineProperty(new Image(), 'id', {
+            get: () => devtools.open = true
         });
 
-        console.log('%c', element);
-        setInterval(function() {
+        setInterval(() => {
             if (devtools.open) {
                 alert('Desculpe, as ferramentas de desenvolvedor estão abertas!');
                 devtools.open = false;
             }
         }, 1000);
 
-        window.addEventListener('load', function() {
-            document.addEventListener('dragstart', function(e) {
-                e.preventDefault();
-            });
-
-            document.addEventListener('selectstart', function(e) {
-                e.preventDefault();
-            });
+        window.addEventListener('load', () => {
+            document.addEventListener('dragstart', e => e.preventDefault());
+            document.addEventListener('selectstart', e => e.preventDefault());
 
             let devToolsTimeout;
-            const devToolsCheck = () => {
+            const checkDevTools = () => {
                 const widthThreshold = window.outerWidth - window.innerWidth > 160;
                 const heightThreshold = window.outerHeight - window.innerHeight > 160;
                 if (widthThreshold || heightThreshold) {
@@ -336,9 +307,9 @@
                 }
             };
 
-            window.addEventListener('resize', function() {
+            window.addEventListener('resize', () => {
                 clearTimeout(devToolsTimeout);
-                devToolsTimeout = setTimeout(devToolsCheck, 100);
+                devToolsTimeout = setTimeout(checkDevTools, 100);
             });
         });
     </script>
