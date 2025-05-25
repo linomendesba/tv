@@ -84,7 +84,7 @@
         .marquee-container span {
             display: inline-block;
             padding-left: 100%;
-            animation: marquee 110s linear infinite; /* 50s para o texto passar + 60s de pausa */
+            animation: marquee 110s linear infinite;
             white-space: nowrap;
         }
 
@@ -96,7 +96,7 @@
 
         .video-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
             margin: 20px 0;
         }
@@ -108,7 +108,7 @@
             transition: transform 0.3s ease;
             overflow: hidden;
             position: relative;
-            padding-top: 80%; /* Ajuste aqui para aumentar a altura (antes era 56.25%) */
+            padding-top: 80%;
         }
 
         .video:hover {
@@ -150,7 +150,6 @@
             color: var(--text-color);
             font-size: 1.2em;
             margin-bottom: 10px;
-            
         }
 
         .warning-message p {
@@ -159,8 +158,8 @@
 
         @keyframes marquee {
             0% { transform: translateX(0); }
-            45.45% { transform: translateX(-100%); } /* 50s / 110s = 45.45% */
-            100% { transform: translateX(-100%); } /* Fica parado por 60s (o restante do tempo) */
+            45.45% { transform: translateX(-100%); }
+            100% { transform: translateX(-100%); }
         }
 
         ::-webkit-scrollbar {
@@ -181,7 +180,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             .video {
-                padding-top: 65%; /* Mantém a proporção ajustada */
+                padding-top: 65%;
             }
         }
 
@@ -211,7 +210,7 @@
             }
 
             .video {
-                padding-top: 65%; /* Mantém a proporção ajustada */
+                padding-top: 65%;
             }
         }
     </style>
@@ -253,16 +252,8 @@
                 <iframe src="https://stoiximan-br.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximan-br&ch=soccerserieAbr"></iframe>
             </div>
             <div class="video">
-                <div class="video-title">Liga Espanhola</div>
-                <iframe src="https://vgpclive-vs001.akamaized.net/uof-entry-point/stable/dist/index.html?clientid=6053&sport=vwmf&layout=video&product=vwmf2"></iframe>
-            </div>
-            <div class="video">
-                <div class="video-title">British Derbie</div>
-                <iframe src="https://vgpclive-vs001.akamaized.net/uof-entry-point/stable/dist/index.html?clientid=6053&sport=vwmf&layout=video&product=vwmf1"></iframe>
-            </div>
-            <div class="video">
-                <div class="video-title">Scudetto Italiano</div>
-                <iframe src="https://vgpclive-vs001.akamaized.net/uof-entry-point/stable/dist/index.html?clientid=6053&sport=vwmf&layout=video&product=vwmf3"></iframe>
+                <div class="video-title">Brasileirão Betano</div>
+                <iframe src="https://stoiximan-br.live.inspiredvss.co.uk/inggWebViewer/?cust=stoiximan-br&ch=soccer3brasilerio&type=mobile"></iframe>
             </div>
         </div>
 
@@ -299,6 +290,8 @@
             document.addEventListener('selectstart', e => e.preventDefault());
 
             let devToolsTimeout;
+           ව
+
             const checkDevTools = () => {
                 const widthThreshold = window.outerWidth - window.innerWidth > 160;
                 const heightThreshold = window.outerHeight - window.innerHeight > 160;
